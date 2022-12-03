@@ -7,7 +7,7 @@ services:
     image: "dleidert/docker-openvpn-server:${VERSION}"
     container_name: openvpn
     environment:
-      - OPENVPN_SERVER_NAME=vpn.wgdd.org
+      OPENVPN_SERVER_NAME: vpn.wgdd.org
     ports:
       - "1194:1194/udp"
     volumes:
