@@ -1,0 +1,31 @@
+# vim: set ts=2 sw=2 ai si et:
+---
+
+version: "3.0"
+services:
+  openvpn:
+    image: "openvpn:${VERSION}"
+    container_name: openvpn
+    environment:
+      - OPENVPN_SERVER_NAME=vpn.wgdd.org
+    ports:
+      - "1194:1194/udp"
+    volumes:
+      - ./conf:/etc/openvpn
+      - ./logs:/var/log/openvpn
+    cap_add:
+      - AUDIT_WRITE
+      - DAC_OVERRIDE
+      - IPC_LOCK
+      - NET_ADMIN
+      - NET_BIND_SERVICE
+      - NET_RAW
+      - SETGID
+      - SETUID
+      - SYS_CHROOT
+    build:
+      context: "."
+      dockerfile: "./Dockerfile"
+      args:
+        VERSION: "${VERSION:-'dev'}"
+
