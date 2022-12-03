@@ -11,7 +11,7 @@ services:
     ports:
       - "1194:1194/udp"
     volumes:
-      - ./conf:/etc/openvpn
+      - ./conf:/etc/openvpn:ro
       - ./logs:/var/log/openvpn
     devices:
       - "/dev/net/tun:/dev/net/tun"
