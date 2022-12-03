@@ -5,7 +5,7 @@ set -e
 
 CONF_DIR=/etc/openvpn
 
-test -f /etc/openvpn/ta.key || /usr/sbin/openvpn --genkey --secret ${CONF_DIR}/ta.key
+test -f /etc/openvpn/ta.key || /usr/sbin/openvpn --genkey secret ${CONF_DIR}/ta.key
 
 /usr/sbin/openvpn --status-version 2 --suppress-timestamps --dev tun --config ${CONF_DIR}/${OPENVPN_SERVER_NAME}.conf || exit $?
 
