@@ -15,6 +15,10 @@ services:
       - ./logs:/var/log/openvpn
     devices:
       - "/dev/net/tun:/dev/net/tun"
+    sysctls:
+      net.ipv4.ip_forward: 1
+      net.ipv6.conf.all.disable_ipv6: 1
+      net.ipv6.conf.default.disable_ipv6: 1
     cap_add:
       - AUDIT_WRITE
       - DAC_OVERRIDE

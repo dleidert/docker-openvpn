@@ -15,8 +15,6 @@ RUN apt-get update && \
     update-alternatives --set iptables /usr/sbin/iptables-legacy && \
     update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
 
-ADD ./etc/sysctl.d/* /etc/sysctl.d/
-
 ENV OPENVPN_SERVER_NAME=server
 
 WORKDIR /etc/openvpn
