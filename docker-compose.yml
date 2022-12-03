@@ -13,6 +13,8 @@ services:
     volumes:
       - ./conf:/etc/openvpn
       - ./logs:/var/log/openvpn
+    devices:
+      - "/dev/net/tun:/dev/net/tun"
     cap_add:
       - AUDIT_WRITE
       - DAC_OVERRIDE

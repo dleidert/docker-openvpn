@@ -15,10 +15,6 @@ RUN apt-get update && \
     update-alternatives --set iptables /usr/sbin/iptables-legacy && \
     update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
 
-RUN mkdir -p /dev/net && \
-    test ! -c /dev/net/tun && \
-    mknod /dev/net/tun c 10 200
-
 ADD ./etc/sysctl.d/* /etc/sysctl.d/
 
 ENV OPENVPN_SERVER_NAME=server
@@ -30,4 +26,4 @@ VOLUME ["/var/log/openvpn"]
 
 EXPOSE 1194/udp
 
-CMD ["/bin/sh", "-c", "/usr/sbin/openvpn --status-version  2 --suppress-timestamps --config ${OPENVPN_SERVER_NAME}.conf"]
+CMD ["/bin/sh", "-c", "/usr/sbin/openvpn --status-version  2 --suppress-timestamps --dev tun --config ${OPENVPN_SERVER_NAME}.conf"]
