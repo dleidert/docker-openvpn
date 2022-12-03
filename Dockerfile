@@ -9,14 +9,14 @@ LABEL maintainer="Daniel Leidert <daniel.leidert@wgdd.de>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+ADD --chown=root *.sh /app/
+
 RUN apt-get update && \
     apt-get dist-upgrade -y && \
     apt-get install -y openvpn iptables locales-all && \
     update-alternatives --set iptables /usr/sbin/iptables-legacy && \
     update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy && \
-    mkdir -p /app
-
-ADD --chmod=755 *.sh /app/
+    chmod 755 /app/*.sh
 
 ENV OPENVPN_SERVER_NAME=server
 
