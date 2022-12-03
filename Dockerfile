@@ -30,4 +30,4 @@ VOLUME ["/var/log/openvpn"]
 
 EXPOSE 1194/udp
 
-CMD ["/usr/sbin/openvpn", "--status-version",  "2", "--suppress-timestamps", "--config", "${OPENVPN_SERVER_NAME}.conf"]
+CMD ["/bin/sh", "-c", "/usr/sbin/openvpn --status-version  2 --suppress-timestamps --config ${OPENVPN_SERVER_NAME}.conf"]
