@@ -13,15 +13,18 @@ RUN apt-get update && \
     apt-get dist-upgrade -y && \
     apt-get install -y openvpn iptables locales-all && \
     update-alternatives --set iptables /usr/sbin/iptables-legacy && \
-    update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
+    update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy && \
+    mkdir -p /app
+
+ADD --chmod=755 *.sh /app/
 
 ENV OPENVPN_SERVER_NAME=server
-
-WORKDIR /etc/openvpn
 
 VOLUME ["/etc/openvpn"]
 VOLUME ["/var/log/openvpn"]
 
 EXPOSE 1194/udp
 
-CMD ["/bin/sh", "-c", "/usr/sbin/openvpn --status-version  2 --suppress-timestamps --dev tun --config ${OPENVPN_SERVER_NAME}.conf"]
+WORKDIR /app
+
+ENTRYPOINT ["/app/entrypoint.sh"]
