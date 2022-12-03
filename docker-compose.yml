@@ -9,7 +9,7 @@ services:
     #tty: true
     container_name: openvpn
     environment:
-      OPENVPN_SERVER_NAME: vpn.wgdd.org
+      OPENVPN_SERVER_NAME: vpn.example.com
     ports:
       - "1194:1194/udp"
     volumes:
