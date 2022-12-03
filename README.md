@@ -7,7 +7,7 @@ providing an OpenVPN server with the same limitations and settings the
 The container does not include a CA environment. The necessary CA is maintained
 elsewhere. The configuration and the certificates and files, necessary to run
 the server, are expected to be copied into the configuration directory via a
-bind mount ot named volume (see [`docker-compose.yml`](docker-compose.yml)).
+[bind mount ot named volume](docker-compose.yml#L15-L16).
 
 ## Structure
 
