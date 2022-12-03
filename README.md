@@ -13,15 +13,17 @@ bind mount ot named volume (see [`docker-compose.yml`](docker-compose.yml)).
 
 The project's [`Dockerfile`](Dockerfile) contains the instructions to build the
 image, while the [`docker-compose.yml`](docker-compose.yml) file contains a few
-build instructions, but mainly the directives to run the docker container.
+[build](docker-compose.yml#L34) instructions, but mainly the directives to run
+the docker container.
 
-The `tun` device is not created, but mapped into the container!
+The `tun` device is not created, but [mapped](docker-compose.yml#L18-L19) into
+the container!
 
 The configuration of sysctl is also done via
-[`docker-compose.yml`](docker-compose.yml).
+[`docker-compose.yml`](docker-compose.yml#L20-L23).
 
-The `ta.key` must be created. If this file does not exist when starting the
-container, it will be created, but requires `/etc/openvpn` to be mounted
+The file `ta.key` must be created. If this file does not exist when starting
+the container, it will be created, but requires `/etc/openvpn` to be mounted
 *read-write*. For normal operations, though, this directory should be
 read-only.
 
